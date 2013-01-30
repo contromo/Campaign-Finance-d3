@@ -1,6 +1,7 @@
 function GetNewAggregator(url)
 {
-	var sum = 0; 
+	var sum1 = 0;
+	var sum2 = 0;  
 	return function(page)
 	{
 		// use url & page to get set of numbers.. say this is in variable a.
@@ -8,7 +9,7 @@ function GetNewAggregator(url)
 
 		// say we have a function GetSum() that will sum up numbers 
 		// in an array. 
-		return sum + GetSum(a);
+		//return sum + GetSum(a);
 	}
 }
 
@@ -17,3 +18,4 @@ var affiliationAggregator = GetNewAggregator('datafestapi/affiliation-endpoint')
 
 affiliationAggregator(1); 
 affiliationAggregator(2); 
+
