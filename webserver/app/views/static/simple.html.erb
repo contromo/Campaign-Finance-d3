@@ -12,7 +12,10 @@
 			type: "GET",
 			success: function(data, textStatus, xhr)
 			{
-				alert(data[0]);
+				if (data == null)
+					alert('data is null');
+				else
+					alert(data);
 			},
 			error: function(xhr, textStatus, errorThrown)
 			{

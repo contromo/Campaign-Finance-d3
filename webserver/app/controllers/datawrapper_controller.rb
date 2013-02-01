@@ -11,19 +11,12 @@ class DatawrapperController < ApplicationController
 		puts 'uri.path: ' + uri.path
 		puts 'uri.port: ' + uri.port.to_s
 		puts 'uri.query: ' + uri.query
-		#req = Net::HTTP::Get.new(uri.path)
-		
-		#res = Net::HTTP.start(uri.host, uri.port) {|http|
-		#  http.request(req)
-		#}
-		#puts res.body    
 
-		result = Net::HTTP.get_print(uri)
-		puts result
+		@result = Net::HTTP.get_response(uri)
 
     respond_to do |format|
-      format.json { render json: result.to_json }
-      format.js { render result }
+      format.json { render json: @result.body }
+      format.js { render result.body }
     end
 
 	end
