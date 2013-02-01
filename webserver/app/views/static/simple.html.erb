@@ -1,11 +1,24 @@
 <html>
-	<button type="button" id="getdata-button">getJSON!</button>
-
-
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.js" type="text/javascript" charset="utf-8"></script>
 	<script src="http://d3js.org/d3.v3.min.js"></script>		
 
-	<script type="text/javascript" 
+	<!--script type="text/javascript" 
 		src="http://transparencydata.com/api/1.0/contributions.json?apikey=ac889422c02d446383ac5fffcebf5665&contributor_state=ak&date=><|2002-09-01|2002-12-31&seat=state:upper|state:lower&callback=thisIsMyCallback">
+	</script-->
+
+	<script>
+		$.ajax({
+			url: '<%= url_for(:controller => 'datawrapper', :action => 'alldata')  %>',
+			type: "GET",
+			success: function(data, textStatus, xhr)
+			{
+				alert(data[0]);
+			},
+			error: function(xhr, textStatus, errorThrown)
+			{
+
+				alert('xhr, error: ' + xhr + ' ' + textStatus); 
+			}
+		});
 	</script>	
 </html>
