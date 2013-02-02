@@ -9,59 +9,66 @@ var mDict = {};
 $.each(pJsonData, function(key, data){
 if(data.seat == pSeatType)
 {
-	var district = data.district.toString().replace("-","_");
-	var amount_obj = data.amount;
-
-	var temp = mDict[district];
-
-	if(typeof(temp) != 'undefined')
+	if(data.district == null || data.district.toString() == "")
 	{
-		if(data.recipient_party == "R")
-		{
-			var temp_amount = parseInt(amount_obj, 10) + parseInt(temp.repub_don, 10);
-			mDict[district].repub_don = temp_amount;
-		}
-		else if(data.recipient_part == "D")
-		{
-			var temp_amount = parseInt(amount_obj, 10) + parseInt(temp.dem_don, 10);
-			mDict[district].dem_don = temp_amount;
-		}
-		else
-		{
-			var temp_amount = parseInt(amount_obj, 10) + parseInt(temp.other_don, 10);
-			mDict[district].other_don = temp_amount;
-		}
+		console.log("Iteration: " + key.toString() + " has a blank/null district");
 	}
 	else
 	{
-		if(data.recipient_party == "R")
-		{
-			var json = {};
-			json.district = district;
-			json.repub_don = amount_obj.toString();
-			json.dem_don = 0;
-			json.other_don = 0;
+		var district = data.district.toString().replace("-","_");
+		var amount_obj = data.amount;
 
-			mDict[district] = json;
-		}
-		else if(data.recipient_part == "D")
-		{
-			var json = {};
-			json.district = district;
-			json.repub_don = 0;
-			json.dem_don = amount_obj.toString();
-			json.other_don = 0;
+		var temp = mDict[district];
 
-			mDict[district] = json;
+		if(typeof(temp) != 'undefined')
+		{
+			if(data.recipient_party == "R")
+			{
+				var temp_amount = parseInt(amount_obj, 10) + parseInt(temp.repub_don, 10);
+				mDict[district].repub_don = temp_amount;
+			}
+			else if(data.recipient_part == "D")
+			{
+				var temp_amount = parseInt(amount_obj, 10) + parseInt(temp.dem_don, 10);
+				mDict[district].dem_don = temp_amount;
+			}
+			else
+			{
+				var temp_amount = parseInt(amount_obj, 10) + parseInt(temp.other_don, 10);
+				mDict[district].other_don = temp_amount;
+			}
 		}
 		else
 		{
-			var json = {};
-			json.district = district;
-			json.repub_don = 0;
-			json.dem_don = 0;
-			json.other_don = amount_obj.toString();
-			mDict[district] = json;
+			if(data.recipient_party == "R")
+			{
+				var json = {};
+				json.district = district;
+				json.repub_don = amount_obj.toString();
+				json.dem_don = 0;
+				json.other_don = 0;
+
+				mDict[district] = json;
+			}
+			else if(data.recipient_part == "D")
+			{
+				var json = {};
+				json.district = district;
+				json.repub_don = 0;
+				json.dem_don = amount_obj.toString();
+				json.other_don = 0;
+
+				mDict[district] = json;
+			}
+			else
+			{
+				var json = {};
+				json.district = district;
+				json.repub_don = 0;
+				json.dem_don = 0;
+				json.other_don = amount_obj.toString();
+				mDict[district] = json;
+			}
 		}
 	}
 }
