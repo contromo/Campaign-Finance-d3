@@ -86,12 +86,6 @@
 
 			$(function(){
 
-			$('h1').mouseenter(function(){
-
-				$('h1').fadeOut('slow');	
-			})
-
-
 			//attach a jQuery live event to the button
 			var output = null;	
 
@@ -108,7 +102,13 @@
 
 	</script>
 
+
+	<table>
+	<tr>
+	<td>
+
 	<div id='fedSenate'>
+		<h1>Federal Senate</h1>
 		<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 		<svg
 		   xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -434,8 +434,10 @@
 		</svg>
 
 	</div>
-
+	</td>
+	<td>
 	<div id='fedHouse'>
+		<h1>Federal House</h1>
 		<svg
 		   xmlns:svg="http://www.w3.org/2000/svg"
 		   xmlns="http://www.w3.org/2000/svg"
@@ -2200,9 +2202,12 @@
 		     id="State_Borders" />
 		</svg>
 	</div>
-
+	</td>
+	</tr>
+	<tr>
+	<td>
 	<div id='state'>
-
+		<h1>State (both Houses & Governor)</h1>
 		<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 		<svg
 		   xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -2528,7 +2533,8 @@
 		</svg>
 
 	</div>
-
+	</td>
+	<td>
 	<div id='form'>
 		<form name="input" action="#" method="get">
 		<table align='center'>
@@ -2582,7 +2588,9 @@
 		
 
 	</div>
-
+	</td>
+	</tr>
+	</table>
 
 	<script type="text/javascript">
 

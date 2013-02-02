@@ -4,9 +4,14 @@ body {
     background: #E6E6E6;
 }
 
+h1 {
+	color: white;
+	text-align: center;
+}
+
 #wrapper {
 	width: 1800px;
-	height: 1200px;
+	height: 1500px;
 	margin-right: auto;
 	margin-left: auto;
 	border-right: 2px solid #000000;
@@ -23,13 +28,18 @@ body {
     /*border-left: 1px dashed #999999;*/
 }
 	
+table tr td{
+	margin-left:auto;
+	margin-right:auto;
+}
 
 #fedSenate {
-    /*float: left;*/
+    float: left;
     width: 875px;
     display: inline;
     /*padding-left: 10px;*/
     /*border-left: 1px dashed #999999;*/
+
 }
 
 #fedHouse {
@@ -38,19 +48,17 @@ body {
 }
 
 #state {
-   	float: left;
-   	    display: inline;
-
+   	/*display: inline;*/
     width: 900px;
+    clear: both;
 }
  
 #form {
 	margin-top: 50px;
 	text-align: center;
    	float: left;
-    width: 800px;
+    width: 200px;
     color: white;
-
 }
 
 table {
