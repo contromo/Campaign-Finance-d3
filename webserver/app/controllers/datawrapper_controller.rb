@@ -6,19 +6,22 @@ class DatawrapperController < ApplicationController
 		puts '################# alldata #####################'
 
 		contributor_ft = params['contributor_ft']
-		date = params['date']
+		year = params['year']
 
 		page = parsePage
-		url = "http://transparencydata.com/api/1.0/contributions.json?apikey=" + apikey + "&date=><|2002-09-01|2002-12-31&seat=state:upper|state:lower&per_page=100&page=" + page		
+		url = "http://transparencydata.com/api/1.0/contributions.json?apikey=" + apikey + "&seat=state:upper|state:lower|federal:senate|federal:house|federal:president&per_page=100&page=" + page		
 		
 		if !contributor_ft.nil?
 			url += '&contributor_ft=' + contributor_ft
 		end
 
-		if !date.nil? 
-			url += '&date' + date
+		if !year.nil? 
+			url += '&date=><|' + year + '-01-01|' + year + '-12-31' 
+		else 
+			#default date is 2012.
+			url += '&date=><|2012-01-01|2012-12-31'
 		end
-
+		puts url
 		query_api(url, page)
 	end
 
