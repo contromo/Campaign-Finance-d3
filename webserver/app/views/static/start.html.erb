@@ -88,13 +88,13 @@
 					var industry = $("select#industry").val(); 
 					var company = $("input#company").val(); 
 					var year = $("select#year").val(); 
-
-					var dataString = '?contributor_ft='+ company+ '&date=><|'+ year + '-01-01|'+ year+ '-12-31';
+					var dataString = 'contributor_ft='+ company;
+					// var dataString = 'contributor_ft='+ company+ '&date=><|'+ year + '-01-01|'+ year+ '-12-31';
 
 					alert (dataString);
 					$.ajax({  
 						  type: "GET",  
-						  url: "/datawrapper/alldata?",  
+						  url: "/datawrapper/alldata",  
 						  data: dataString,  
 						  success: function() {  
 						    alert("Success!")
