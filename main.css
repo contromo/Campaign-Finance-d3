@@ -49,5 +49,10 @@ body {
 	text-align: center;
    	float: left;
     width: 800px;
+    color: white;
 
+}
+
+table {
+	text-align: left;
 }
