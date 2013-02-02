@@ -38,7 +38,7 @@ class DatawrapperController < ApplicationController
 		if !page.nil?
 			puts 'page is ' + page
 		else
-			page = 1
+			page = '1'
 		end	
 		return page
 	end
