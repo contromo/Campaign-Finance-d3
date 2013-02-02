@@ -7,15 +7,22 @@
 	</script-->
 
 	<script>
+
+		var alldata = null;
+
+		/// Example query.  
 		$.ajax({
-			url: '<%= url_for(:controller => 'datawrapper', :action => 'alldata')  %>',
+			url: '<%= url_for(:controller => 'datawrapper', :action => 'alldata', :page => '1')  %>',
 			type: "GET",
 			success: function(data, textStatus, xhr)
 			{
 				if (data == null)
 					alert('data is null');
 				else
-					alert(data);
+				{
+					alert('success');
+					alldata = data; 
+				}
 			},
 			error: function(xhr, textStatus, errorThrown)
 			{
@@ -23,5 +30,7 @@
 				alert('xhr, error: ' + xhr + ' ' + textStatus); 
 			}
 		});
+
+
 	</script>	
 </html>
