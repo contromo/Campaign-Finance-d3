@@ -82,6 +82,8 @@
 			 
 			});
 
+			var sData= null;
+
 			$(function(){
 
 				$("#button").click(function(){
@@ -96,8 +98,10 @@
 						  type: "GET",  
 						  url: "/datawrapper/alldata",  
 						  data: dataString,  
-						  success: function() {  
+						  success: function(data) {
+						  	sData = data;  
 						    alert("Success!")
+						    console.log(sData);
 						  }  
 						});  
 						return false;
