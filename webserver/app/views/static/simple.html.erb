@@ -7,6 +7,7 @@
 	</script-->
 
 	<script>
+		var allData = null; 
 		$.ajax({
 			url: '<%= url_for(:controller => 'datawrapper', :action => 'alldata')  %>',
 			type: "GET",
@@ -15,7 +16,10 @@
 				if (data == null)
 					alert('data is null');
 				else
+				{
 					alert(data);
+					allData = data;
+				}
 			},
 			error: function(xhr, textStatus, errorThrown)
 			{
