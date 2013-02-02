@@ -38,8 +38,8 @@ if(data.seat == pSeatType)
 		{
 			var json = {};
 			json.district = district;
-			json.repub_don = 0;
-			json.dem_don = amount_obj.toString();
+			json.repub_don = amount_obj.toString();
+			json.dem_don = 0;
 			json.other_don = 0;
 
 			mDict[district] = json;
