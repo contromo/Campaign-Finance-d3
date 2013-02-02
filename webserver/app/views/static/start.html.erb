@@ -93,15 +93,17 @@
 					var dataString = 'contributor_ft='+ company + '&year=' + year;
 					// var dataString = 'contributor_ft='+ company+ '&date=><|'+ year + '-01-01|'+ year+ '-12-31';
 
-					alert (dataString);
+					var jsonResult = null; 
+
 					$.ajax({  
 						  type: "GET",  
 						  url: "/datawrapper/alldata",  
 						  data: dataString,  
 						  success: function(data) {
 						  	sData = data;  
-						    alert("Success!")
-						    console.log(sData);
+						    console.log(sData);						    
+						    jsonResult = calcSumPerDistrict("federal:house", data); 
+						    console.log(jsonResult)
 						  }  
 						});  
 						return false;
