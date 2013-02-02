@@ -86,12 +86,6 @@
 
 			$(function(){
 
-			$('h1').mouseenter(function(){
-
-				$('h1').fadeOut('slow');	
-			})
-
-
 			//attach a jQuery live event to the button
 			var output = null;	
 
@@ -108,7 +102,13 @@
 
 	</script>
 
+
+	<table>
+	<tr>
+	<td>
+
 	<div id='fedSenate'>
+		<h1>Federal Senate</h1>
 		<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 		<svg
 		   xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -122,7 +122,7 @@
 		   height="532.456"
 		   viewBox="0 0 959 593"
 
-		   id="svg2"
+		   id="svg1"
 		   sodipodi:version="0.32"
 		   inkscape:version="0.46"
 		   sodipodi:docname="United States WIP.svg"
@@ -187,12 +187,7 @@
 		     id="NH"
 		     d="M 880.79902,142.42476 L 881.66802,141.34826 L 882.75824,138.05724 L 880.21516,137.14377 L 879.73017,134.07221 L 875.85032,132.94059 L 875.527,130.19235 L 868.25225,106.75153 L 863.65083,92.208542 L 862.75375,92.203482 L 862.10711,93.820087 L 861.46047,93.335106 L 860.4905,92.365143 L 859.03556,94.305068 L 858.98709,99.337122 L 859.29874,105.00434 L 861.23866,107.75258 L 861.23866,111.7941 L 857.52046,116.85688 L 854.93389,117.98852 L 854.93389,119.12014 L 856.06552,120.89841 L 856.06552,129.46643 L 855.25721,138.6811 L 855.09555,143.53092 L 856.06552,144.82422 L 855.90386,149.35071 L 855.41887,151.12899 L 856.38768,151.83821 L 873.17535,147.41366 L 875.35022,146.81121 L 877.19379,144.03788 L 880.79902,142.42476 z"
 		     sodipodi:nodetypes="ccccccccccccccccccccccccccccccccc" />
-		  <path
-		     d="M 211,493 V 548 L 247,593 M 0,425 H 144 L 211,493 H 297 L 350,547 V 593"
-		     stroke="#a9a9a9"
-		     fill="none"
-		     stroke-width="2"
-		     id="path57" />
+	
 		  <g
 		     id="MI"
 		     style="stroke:#ffffff;stroke-opacity:1;fill:black;fill-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none">
@@ -439,8 +434,10 @@
 		</svg>
 
 	</div>
-
+	</td>
+	<td>
 	<div id='fedHouse'>
+		<h1>Federal House</h1>
 		<svg
 		   xmlns:svg="http://www.w3.org/2000/svg"
 		   xmlns="http://www.w3.org/2000/svg"
@@ -2205,9 +2202,12 @@
 		     id="State_Borders" />
 		</svg>
 	</div>
-
+	</td>
+	</tr>
+	<tr>
+	<td>
 	<div id='state'>
-
+		<h1>State (both Houses & Governor)</h1>
 		<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 		<svg
 		   xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -2221,7 +2221,7 @@
 		   height="532.456"
 		   viewBox="0 0 959 593"
 
-		   id="svg2"
+		   id="svg3"
 		   sodipodi:version="0.32"
 		   inkscape:version="0.46"
 		   sodipodi:docname="United States WIP.svg"
@@ -2286,12 +2286,7 @@
 		     id="NH"
 		     d="M 880.79902,142.42476 L 881.66802,141.34826 L 882.75824,138.05724 L 880.21516,137.14377 L 879.73017,134.07221 L 875.85032,132.94059 L 875.527,130.19235 L 868.25225,106.75153 L 863.65083,92.208542 L 862.75375,92.203482 L 862.10711,93.820087 L 861.46047,93.335106 L 860.4905,92.365143 L 859.03556,94.305068 L 858.98709,99.337122 L 859.29874,105.00434 L 861.23866,107.75258 L 861.23866,111.7941 L 857.52046,116.85688 L 854.93389,117.98852 L 854.93389,119.12014 L 856.06552,120.89841 L 856.06552,129.46643 L 855.25721,138.6811 L 855.09555,143.53092 L 856.06552,144.82422 L 855.90386,149.35071 L 855.41887,151.12899 L 856.38768,151.83821 L 873.17535,147.41366 L 875.35022,146.81121 L 877.19379,144.03788 L 880.79902,142.42476 z"
 		     sodipodi:nodetypes="ccccccccccccccccccccccccccccccccc" />
-		  <path
-		     d="M 211,493 V 548 L 247,593 M 0,425 H 144 L 211,493 H 297 L 350,547 V 593"
-		     stroke="#a9a9a9"
-		     fill="none"
-		     stroke-width="2"
-		     id="path57" />
+		 
 		  <g
 		     id="MI"
 		     style="stroke:#ffffff;stroke-opacity:1;fill:black;fill-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none">
@@ -2538,9 +2533,10 @@
 		</svg>
 
 	</div>
-
+	</td>
+	<td>
 	<div id='form'>
-
+		<form name="input" action="#" method="get">
 		<table align='center'>
 			<tr>
 			<td>Industry:</td>
@@ -2569,7 +2565,7 @@
 			<tr>
 			<td>Party:</td>
 			<td><select>
-					<option value="D">Democrat</option>
+					<option value="D">Democratic</option>
 					<option value="R">Republican</option>
 					<option value="O">Other</option>
 				</select></td>
@@ -2585,19 +2581,23 @@
 					<option value="2008">2011</option>
 				</select></td>
 			</tr>
-		</table>
 
+		</table>
+		<input type="submit" value="Submit">
+		</form>
 		
 
 	</div>
-
+	</td>
+	</tr>
+	</table>
 
 	<script type="text/javascript">
 
-	d3.selectAll('path').attr('style', 'fill:red;stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none' )  
+	d3.selectAll('#svg1 path').attr('style', 'fill:red;stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none' )  
 		console.log(statejson)
 
-	var state = d3.selectAll('path').attr('style', function(d){
+	var state = d3.selectAll('#svg1 path').attr('style', function(d){
  
 	// Get the ID of the path we are currently working with
 	// Our SVG uses the state abbreviation for the ID
