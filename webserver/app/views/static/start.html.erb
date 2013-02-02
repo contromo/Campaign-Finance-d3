@@ -82,13 +82,15 @@
 			 
 			});
 
+			var sData= null;
+
 			$(function(){
 
 				$("#button").click(function(){
 					var industry = $("select#industry").val(); 
 					var company = $("input#company").val(); 
 					var year = $("select#year").val(); 
-					var dataString = 'contributor_ft='+ company;
+					var dataString = 'contributor_ft='+ company 'year=' + year;
 					// var dataString = 'contributor_ft='+ company+ '&date=><|'+ year + '-01-01|'+ year+ '-12-31';
 
 					alert (dataString);
@@ -96,8 +98,10 @@
 						  type: "GET",  
 						  url: "/datawrapper/alldata",  
 						  data: dataString,  
-						  success: function() {  
+						  success: function(data) {
+						  	sData = data;  
 						    alert("Success!")
+						    console.log(sData);
 						  }  
 						});  
 						return false;
