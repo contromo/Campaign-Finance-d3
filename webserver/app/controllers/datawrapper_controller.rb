@@ -4,8 +4,21 @@ class DatawrapperController < ApplicationController
 	def alldata
 		apikey = 	"ac889422c02d446383ac5fffcebf5665"
 		puts '################# alldata #####################'
+
+		contributor_ft = params['contributor_ft']
+		date = params['date']
+
 		page = parsePage
 		url = "http://transparencydata.com/api/1.0/contributions.json?apikey=" + apikey + "&date=><|2002-09-01|2002-12-31&seat=state:upper|state:lower&per_page=100&page=" + page		
+		
+		if !contributor_ft.nil?
+			url += '&contributor_ft=' + contributor_ft
+		end
+
+		if !date.nil? 
+			url += '&date' + date
+		end
+
 		query_api(url, page)
 	end
 
