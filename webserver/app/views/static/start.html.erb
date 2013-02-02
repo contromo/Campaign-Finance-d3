@@ -84,6 +84,26 @@
 
 			$(function(){
 
+				$("#button").click(function(){
+					var industry = $("select#industry").val(); 
+					var company = $("input#company").val(); 
+					var year = $("select#year").val(); 
+
+					var dataString = '?contributor_ft='+ company+ '&date=><|'+ year + '-01-01|'+ year+ '-12-31';
+
+					alert (dataString);
+					$.ajax({  
+						  type: "GET",  
+						  url: "/datawrapper/alldata?",  
+						  data: dataString,  
+						  success: function() {  
+						    alert("Success!")
+						  }  
+						});  
+						return false;
+
+				});
+
 			//attach a jQuery live event to the button
 			var output = null;	
 
@@ -2538,7 +2558,7 @@
 		<table align='center'>
 			<tr>
 			<td>Industry:</td>
-			<td><select>
+			<td><select id="industry">
 				  	<option value="Agribusiness">Agribusiness</option>
 					<option value="Communications/Electronics"> Communications/Electronics</option>
 					<option value="Construction"> Construction</option>
@@ -2558,30 +2578,31 @@
 			</tr>
 			<tr>
 			<td>Company:</td>
-			<td><select></select></td>
+			<td><input type="text" id="company" name="company"></td>
 			</tr>
-			<tr>
+			<!-- <tr>
 			<td>Party:</td>
 			<td><select>
 					<option value="D">Democratic</option>
 					<option value="R">Republican</option>
 					<option value="O">Other</option>
 				</select></td>
-			</tr>
+			</tr> -->
 			<tr>
 			<td>Year:</td>
-			<td><select>
+			<td><select id="year">
 					<option value="2013">2013</option>
 					<option value="2012">2012</option>
 					<option value="2011">2011</option>
 					<option value="2010">2013</option>
 					<option value="2009">2012</option>
 					<option value="2008">2011</option>
-				</select></td>
+				</select>
+			</td>
 			</tr>
 
 		</table>
-		<input type="submit" value="Submit">
+		<input type="submit" id="button" value="Submit">
 		</form>
 		
 
