@@ -2638,10 +2638,10 @@
 		.attr('transform', 'translate(' + (extraTranslateRight + 50) + ', 0)');
 
 	
-	var minValue = 0;
-	var	maxValue = 500;
+	//var minValue = 0;
+	//var	maxValue = 500;
 
-	function drawLegend() {
+	function drawLegend(minValue, maxValue) {
 
 		legend.append('svg:text')
 			.attr('class', 'legend-title')
@@ -2689,7 +2689,7 @@
 			.style('shape-rendering', 'crispEdges');
 	}
 
-	drawLegend();
+	drawLegend(0, 500);
 
 	</script>
 </div>	
