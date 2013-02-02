@@ -2646,24 +2646,25 @@
 });
 
 
-	var legendGradientWidth = 30;
-	var legendGradientHeight = 200;
-	var extraTranslateRight = 100;
-	var hue = 230;
 
-	var svg = d3.select('body').append('svg:svg');
-	var legend = svg.append('svg:g').attr('transform', 'translate(' + (200 + extraTranslateRight) + ', 240)');
-	var legendTicks = legend.append('svg:g');
-	var legendGradient = legend.append('svg:g');
-	var map = svg.append('svg:g').attr('class', 'map')
-		.attr('transform', 'translate(' + (extraTranslateRight + 50) + ', 0)');
+	//var minValue = 0;
+	//var	maxValue = 500;
 
-	
-	var minValue = 0;
-	var	maxValue = 500;
+	function drawLegend(minValue, maxValue) {
 
-	function drawLegend() {
+		var legendGradientWidth = 30;
+		var legendGradientHeight = 200;
+		var extraTranslateRight = 100;
+		var hue = 230;
 
+		var svg = d3.select('body').append('svg:svg');
+		var legend = svg.append('svg:g').attr('transform', 'translate(' + (200 + extraTranslateRight) + ', -60)');
+		var legendTicks = legend.append('svg:g');
+		var legendGradient = legend.append('svg:g');
+		var map = svg.append('svg:g').attr('class', 'map')
+			.attr('transform', 'translate(' + (extraTranslateRight + 50) + ', 0)');
+
+		
 		legend.append('svg:text')
 			.attr('class', 'legend-title')
 			.attr('x', -25)
@@ -2710,7 +2711,7 @@
 			.style('shape-rendering', 'crispEdges');
 	}
 
-	drawLegend();
+	drawLegend(0, 500);
 
 	</script>
 </div>	
