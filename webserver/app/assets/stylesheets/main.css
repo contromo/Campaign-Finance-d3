@@ -92,6 +92,6 @@ table {
 }
 
 #details{
-        width:200px;
-        height: 100px;
+    float: right;    
+    height: 100px;
 }
