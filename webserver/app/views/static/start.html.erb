@@ -2530,9 +2530,6 @@
 				<input type="submit" id="button" class="btn btn-large" value="Submit">
 				</form>
 			</div>
-			<div id="details">
-				<h2> Amount: </h2>
-			</div>
 
 		</div> <!-- End of row_2 -->
 
@@ -2688,7 +2685,6 @@
 				}
 			}
 			});
-			$('#fedSenateTitle').replaceWith('<div id ="fedSenateTitle" class="mapTitle"><h1>Federal Senate</h1><h2> X states received donations</h2></div>');
 		}
 
 
@@ -2745,7 +2741,6 @@
 			// return "fill:#CCC;stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none" 
 
 		});
-		$('#fedHouseTitle').replaceWith('<div id ="fedHouseTitle" class="mapTitle"><h1>Federal House</h1><h2> X districts received donations</h2></div>');
 	}
 
 
@@ -2798,7 +2793,7 @@
 					}
 				}
 				});
-				$('#stateTitle').replaceWith('<div id ="stateTitle" class="mapTitle"><h1>State (both Houses & Governor)</h1><h2> X states received donations</h2></div>');
+				
 			}
 
 
@@ -2827,11 +2822,11 @@
 				});
 
 			}
-	 		$('#details').replaceWith('<div id ="details" class="mapTitle"><h1>Amount: $'+amount+'</h1></div>');
+	 		$('#fedSenateTitle').replaceWith('<div id ="fedSenateTitle" class="mapTitle"><h1>Federal Senate</h1><br/><h2>Amount: $'+amount+'</h2></div>');
 	 	})
 	 	.on('mouseout', function(d){
-	 		$('#details').replaceWith('<div id ="details" class="mapTitle"><h1>Amount:</h1></div>');
-	 	});
+	 		$('#fedSenateTitle').replaceWith('<div id ="fedSenateTitle" class="mapTitle"><h1>Federal Senate</h1></div>');
+	 	});		
 		
 	var hov2 = d3.selectAll('#svg2 path')
 	 	.on('mouseover', function(d){
@@ -2858,11 +2853,12 @@
 				});
 
 			}
-	 		$('#details').replaceWith('<div id ="details" class="mapTitle"><h1>Amount: $'+amount+'</h1></div>');
+	 		$('#fedHouseTitle').replaceWith('<div id ="fedHouseTitle" class="mapTitle"><h1>Federal House</h1><br/><h2>Amount: $'+amount+'</h2></div>');
 	 	})
 	 	.on('mouseout', function(d){
-	 		$('#details').replaceWith('<div id ="details" class="mapTitle"><h1>Amount:</h1></div>');
-	 	});
+	 		$('#fedHouseTitle').replaceWith('<div id ="fedHouseTitle" class="mapTitle"><h1>Federal House</h1></div>');
+	 	});		
+
 			
 	var hov3 = d3.selectAll('#svg3 path')
 	 	.on('mouseover', function(d){
@@ -2889,10 +2885,10 @@
 				});
 
 			}
-	 		$('#details').replaceWith('<div id ="details" class="mapTitle"><h1>Amount: $'+amount+'</h1></div>');
+	 		$('#stateTitle').replaceWith('<div id ="stateTitle" class="mapTitle"><h1>State (Both houses & Governor)</h1><br/><h2>Amount: $'+amount+'</h2></div>');
 	 	})
 	 	.on('mouseout', function(d){
-	 		$('#details').replaceWith('<div id ="details" class="mapTitle"><h1>Amount:</h1></div>');
+	 		$('#stateTitle').replaceWith('<div id ="stateTitle" class="mapTitle"><h1>State (Both houses & Governor)</h1></div>');
 	 	});		
 
 	// var state = d3.selectAll('#svg1 path').attr('style', function(d){
