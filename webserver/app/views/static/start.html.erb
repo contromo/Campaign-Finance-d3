@@ -2538,7 +2538,7 @@
 					colorState();
 					addTitle(company, year, party);
 					removeLegend(); 
-					drawLegend();					
+					setLegendValuesAndDraw();					
 					// alert(party);
 				});
 
@@ -2811,7 +2811,7 @@
 		$('#legend_map').remove(); 		
 	}
 
-	function drawLegend() 
+	function setLegendValuesAndDraw() 
 	{
 		if (max == null)
 		{
