@@ -2553,8 +2553,11 @@
 						    stateResult = calcStateSum(data); ///////
 						    console.log(fedHouseResult);
 						    console.log(fedSenateResult);
+						    console.log(stateResult);
 						    colorFedSenate();
 						    colorFedHouse();
+						    colorState();
+
 						    console.log(calcMaxContrib(fedHouseResult));
 
 						
@@ -2659,6 +2662,40 @@
 
 		});
 	}
+
+
+	function colorState(){
+			var lAmount =null;
+			var state = d3.selectAll('#svg3 path').attr('style', function(d){
+		 
+				// Get the ID of the path we are currently working with
+				// Our SVG uses the state abbreviation for the ID
+				var abbr = this.id;
+			 
+				// Loop through the state data looking for
+				// a match for that abbreviation
+				// Then returning the corresponding president
+				// who won that state, from the array we made earlier
+				if(stateResult){
+					var found = false;
+					$.each(stateResult, function(key, data){
+						if(data.state == abbr){
+							found=true;
+							lAmount = data.repub_don/5000;
+							return;
+
+						}
+					});
+					if (found){
+						return "fill:"+rColor(lAmount)+";stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none"
+					}
+					else {
+						return "fill:white;stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none" 
+					}
+				}
+				});
+
+			}
 
 
 	// var state = d3.selectAll('#svg1 path').attr('style', function(d){
