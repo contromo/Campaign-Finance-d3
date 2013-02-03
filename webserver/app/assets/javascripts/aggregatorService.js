@@ -2,7 +2,7 @@
 /*With the federal:house query as input, calculates the sum of campaign contributions per district and per party*/
 function calcHouseSumPerDistrict(pJsonData)
 {
-	console.log("calcSumerPerDistrict");
+	console.log("calcHouseSumPerDistrict");
 
 	var result_json = [];
 	var mDict = {};

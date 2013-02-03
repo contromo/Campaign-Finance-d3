@@ -2520,6 +2520,7 @@
 
 			var sData= null;
 			var fedHouseResult=null;
+			var stateResult=null;
 
 			$(function(){
 
@@ -2539,12 +2540,12 @@
 						  success: function(data) {
 						  	sData = data;  
 						    console.log(sData);						    
-						    fedHouseResult = calcSumPerDistrict(data); 
-						    console.log(fedHouseResult)
+						    fedHouseResult = calcHouseSumPerDistrict(data); 
+						    console.log(fedHouseResult);
 						    colorFedHouse();
-						    console.log(calcMaxContrib(jsonResult));
+						    console.log(calcMaxContrib(fedHouseResult));
 
-						    console.log(jsonResult)
+						
 						  }  
 						});  
 						return false;
@@ -5040,6 +5041,9 @@
 					<option value="2010">2010</option>
 					<option value="2009">2009</option>
 					<option value="2008">2008</option>
+					<option value="2008">2007</option>
+					<option value="2008">2006</option>
+					<option value="2008">2005</option>
 				</select>
 			</td>
 			</tr>
