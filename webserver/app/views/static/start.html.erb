@@ -2538,7 +2538,7 @@
 			var company = null;
 			var year = null;
 			var party = null;
-
+			var max = null; 
 			$(function(){
 
 				$(":radio").click(function(){
@@ -2547,6 +2547,8 @@
 					colorFedHouse();
 					colorState();
 					addTitle(company, year, party);
+					removeLegend(); 
+					drawLegend();					
 					// alert(party);
 				});
 
@@ -2579,22 +2581,9 @@
 						    colorFedHouse();
 						    colorState();
 
-						    var max = calcMaxContrib(data);
-						    if (party == "D")
-						    {
-						    	removeLegend(); 
-						    	drawLegend(0, max.dem_don); 
-						    } 
-						    else if (party == "R")
-						    {
-						    	removeLegend(); 
-						    	drawLegend(0, max.repub_don); 
-						    }
-						    else if (party == "O")
-						    {
-						    	removeLegend(); 
-						    	drawLegend(0, max.other_don); 						    	
-						    }
+						    max = calcMaxContrib(data);
+						    //drawLegend();
+
 						    console.log(calcMaxContrib(fedHouseResult));
 						  }  
 						});  
@@ -2619,6 +2608,7 @@
     
 	// d3.selectAll('#svg1 path').attr('style', 'fill:red;stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none' );  
 		console.log(statejson);
+
 
 	function addTitle(c, y, p) {
 		// alert(c + y + p);
@@ -2832,12 +2822,52 @@
 		$('#legend_map').remove(); 		
 	}
 
+	function drawLegend() 
+	{
+		if (max == null)
+		{
+			max.dem_don = 5000; 
+			max.repub_don = 5000;
+			max.other_don = 5000; 
+		}		
+		
+		if (party == "D")
+		{
+			removeLegend(); 
+			drawLegend(0, max.dem_don); 
+		} 
+		else if (party == "R")
+		{
+			removeLegend(); 
+			drawLegend(0, max.repub_don); 
+		}
+		else if (party == "O")
+		{
+			removeLegend(); 
+			drawLegend(0, max.other_don); 						    	
+		}
+
+	}
+
 	function drawLegend(minValue, maxValue) {
 
 		var legendGradientWidth = 30;
 		var legendGradientHeight = 200;
 		var extraTranslateRight = 100;
 		var hue = 230;
+
+		if (party == "R")
+		{
+			hue = 0; 
+		}
+		else if (party == "D")
+		{
+			hue = 230;
+		}
+		else 
+		{
+			hue = 120;
+		}
 
 		var svg = d3.select('#row_2')
 							.append('svg:svg')
