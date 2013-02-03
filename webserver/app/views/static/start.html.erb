@@ -40,6 +40,9 @@
 	<div id='banner'>
 		<h1>Campaign Contributions</h1>
 		<button type="button" id="getdata-button">getJSON!</button>
+	</div>
+	<div id='colorTest'>
+		<h2>Test</h2>
 	</div>	
 
 	<script type="text/javascript">
@@ -2617,39 +2620,49 @@
 	</tr>
 	</table>
 
+
+
 	<script type="text/javascript">
 
-	d3.selectAll('#svg1 path').attr('style', 'fill:red;stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none' )  
-		console.log(statejson)
+	d3.selectAll('#svg1 path').attr('style', 'fill:red;stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none' );  
+		console.log(statejson);
 
 	var state = d3.selectAll('#svg1 path').attr('style', function(d){
  
-	// Get the ID of the path we are currently working with
-	// Our SVG uses the state abbreviation for the ID
-	var abbr = this.id;
- 
-	// Loop through the state data looking for
-	// a match for that abbreviation
-	// Then returning the corresponding president
-	// who won that state, from the array we made earlier
-	$.each(state_data, function(key, data){
-		if(data.state_abbr == abbr){
-			state_president = data.president;
+		// Get the ID of the path we are currently working with
+		// Our SVG uses the state abbreviation for the ID
+		var abbr = this.id;
+	 
+		// Loop through the state data looking for
+		// a match for that abbreviation
+		// Then returning the corresponding president
+		// who won that state, from the array we made earlier
+		$.each(state_data, function(key, data){
+			if(data.state_abbr == abbr){
+				state_president = data.president;
+			}
+		})
+	 
+		// Return colors
+		// based on data					
+		if(state_president == "Obama"){
+			return "fill:blue;stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none"
 		}
-	})
- 
-	// Return colors
-	// based on data					
-	if(state_president == "Obama"){
-		return "fill:blue;stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none"
-	}
-	else if(state_president == "McCain"){
-		return "fill:red;stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none"
-	}
-	else {
-		return "fill:#CCC;stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none"
-	}
-});
+		else if(state_president == "McCain"){
+			return "fill:red;stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none"
+		}
+		else {
+			return "fill:#CCC;stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none"
+		}
+	});
+
+	var color = d3.scale.linear()
+    .domain([0, 1])
+    .range(["white", "blue"]);
+
+    console.log(color(.2));
+
+    $('#colorTest').css('background-color', color(.4));
 
 	function drawLegend(minValue, maxValue) {
 
