@@ -127,7 +127,7 @@
 	</script>
 
 
-	<table>
+	<table id='map_table'>
 	<tr>
 	<td>
 
@@ -2558,7 +2558,7 @@
 
 	</div>
 	</td>
-	<td>
+	<td id="form_cell">
 	<div id='form'>
 		<form name="input" action="#" method="get">
 		<table align='center'>
@@ -2658,8 +2658,13 @@
 		var extraTranslateRight = 100;
 		var hue = 230;
 
-		var svg = d3.select('body').append('svg:svg');
-		var legend = svg.append('svg:g').attr('transform', 'translate(' + (200 + extraTranslateRight) + ', -60)');
+		var svg = d3.select('#wrapper')
+							.append('svg:svg')
+							.attr('id', 'legend_map');
+		var legend = svg
+								.append('svg:g')
+								// .attr('transform', 'translate(' + (200 + extraTranslateRight) + ', 0)');
+								.attr('transform', 'translate(1000, 0)');
 		var legendTicks = legend.append('svg:g');
 		var legendGradient = legend.append('svg:g');
 		var map = svg.append('svg:g').attr('class', 'map')

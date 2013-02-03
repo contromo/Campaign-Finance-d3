@@ -9,6 +9,20 @@ h1 {
 	text-align: center;
 }
 
+#legend_map
+{
+    z-index: 999;
+    border:solid;
+    border-color: red;
+}
+
+#form_cell
+{
+    z-index: 998;
+    overflow: visible;
+}
+
+
 #wrapper {
 	width: 1800px;
 	height: 1500px;
