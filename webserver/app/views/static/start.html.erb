@@ -43,7 +43,9 @@
 
 		<div class='row' class='span12' id='row_1'>
 			<div id='fedSenate' class='span6'>
+				<div id='fedSenateTitle'>
 					<h1>Federal Senate</h1>
+				</div>	
 					<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 					<svg
 					   xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -369,7 +371,9 @@
 					</svg>
 			</div>
 			<div id='fedHouse' class='span6'>
-				<h1>Federal House</h1>
+				<div id='fedHouseTitle'>
+					<h1>Federal House</h1>
+				</div>
 				<svg
 				   xmlns:svg="http://www.w3.org/2000/svg"
 				   xmlns="http://www.w3.org/2000/svg"
@@ -2134,7 +2138,9 @@
 		</div> <!-- End of row_1 -->
 		<div class='row' class='span12' id='row_2'>
 			<div id='state' class='span6'>
-				<h1>State (both Houses & Governor)</h1>
+				<div id='stateTitle'>
+					<h1>State (both Houses & Governor)</h1>
+				</div>
 				<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 				<svg
 				   xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -2561,7 +2567,7 @@
 						    colorFedSenate();
 						    colorFedHouse();
 						    colorState();
-
+						    addTitle(company, year, party);
 						    console.log(calcMaxContrib(fedHouseResult));
 
 						
@@ -2589,8 +2595,15 @@
 	// d3.selectAll('#svg1 path').attr('style', 'fill:red;stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none' );  
 		console.log(statejson);
 
+	function addTitle(c, y, p) {
+			$('#banner').append('<br><h2> from ' + c +" in " + y+'</h2>');
+			return;
+	}
 
 	function colorFedSenate(){
+
+		var count = 0;
+
 		if(party=="R")
 			var color = d3.scale.linear()
 			    .domain([0, 1])
@@ -2621,12 +2634,19 @@
 				$.each(fedSenateResult, function(key, data){
 					if(data.state == abbr){
 						found=true;
-						if(party=="R")
+						if(party=="R" && parseInt(data.repub_don, 10) > 0){
 							sAmount = data.repub_don/5000;
-						else if(party=="D")
+							count = count + 1;
+							// alert('Republican');
+						} else if(party=="D" && parseInt(data.dem_don, 10) > 0) {
 							sAmount = data.dem_don/5000;
-						else
+							count = count + 1;
+							// alert('Democrat');
+						} else if(parseInt(data.other_don, 10) > 0) {
 							sAmount = data.other_don/5000;
+							count = count + 1;
+							// alert('Other');
+						}
 						return;
 
 					}
@@ -2640,6 +2660,7 @@
 			}
 			});
 
+			$('#fedSenateTitle').append('<br><h3>' + count + ' states received donations');
 		}
 
 
