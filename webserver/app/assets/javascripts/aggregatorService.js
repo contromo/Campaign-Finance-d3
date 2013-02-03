@@ -326,16 +326,20 @@ function calcMaxContrib(pJsonData)
 	var max = {};
 	max.dem_don = 0;
 	max.repub_don = 0;
+	max.other_don = 0; 
 	$.each(pJsonData, function(key, data){
-		if(data.dem_don > max.dem_don)
+		if(data.recipient_party == "D" && data.amount > max.dem_don)
 		{
-			max.dem_don = data.dem_don;
+			max.dem_don = data.amount;
 		}
-
-		if(data.repub_don > max.repub_don)
+		if(data.recipient_party == "R" && data.amount > max.repub_don)
 		{
-			max.repub_don = data.repub_don;
+			max.repub_don = data.amount;
 		}
+		if (data.recipient_party != "D" && data.recipient_party != "R" && data.amount > max.other_don)
+		{
+			max.other_don = data.amount; 
+		} 
 	});
 
 	console.log(JSON.stringify(max));

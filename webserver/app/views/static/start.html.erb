@@ -2560,7 +2560,7 @@
 						    console.log(sData);
 						    fedSenateResult = calcSenateSumPerState(data);
 						    fedHouseResult = calcHouseSumPerDistrict(data);
-						    stateResult = calcStateSum(data); ///////
+						    stateResult = calcStateSum(data); 
 						    console.log(fedHouseResult);
 						    console.log(fedSenateResult);
 						    console.log(stateResult);
@@ -2569,9 +2569,23 @@
 						    colorFedHouse();
 						    colorState();
 
+						    var max = calcMaxContrib(data);
+						    if (party == "D")
+						    {
+						    	removeLegend(); 
+						    	drawLegend(0, max.dem_don); 
+						    } 
+						    else if (party == "R")
+						    {
+						    	removeLegend(); 
+						    	drawLegend(0, max.repub_don); 
+						    }
+						    else if (party == "O")
+						    {
+						    	removeLegend(); 
+						    	drawLegend(0, max.other_don); 						    	
+						    }
 						    console.log(calcMaxContrib(fedHouseResult));
-
-						
 						  }  
 						});  
 						return false;
@@ -2801,6 +2815,11 @@
 	// 		return "fill:#CCC;stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none"
 	// 	}
 	// });
+
+	function removeLegend() 
+	{
+		$('#legend_map').remove(); 		
+	}
 
 	function drawLegend(minValue, maxValue) {
 

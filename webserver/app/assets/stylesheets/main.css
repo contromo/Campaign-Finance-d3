@@ -26,7 +26,8 @@ h2 {
 }
 
 
-#wrapper {
+#wrapper 
+{
 	margin-right: auto;
 	margin-left: auto;
 	border-right: 2px solid #000000;
@@ -39,8 +40,6 @@ h2 {
     text-align: center;
     color: black;
     height: 130px;
-    /*padding-left: 10px;*/
-    /*border-left: 1px dashed #999999;*/
 }
 	
 table tr td{
