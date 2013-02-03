@@ -2560,8 +2560,7 @@
 
 			var industry = null;
 			var company = null;
-			var year = null;
-			var party = null;
+			var sDate = null;
 			var max = null; 
 			var startDate = null; 
 			var endDate = null; 
@@ -2642,14 +2641,14 @@
 	function addTitle(c, y, p) {
 		// alert(c + y + p);
 		if(p == "D"){
-			$('#banner').replaceWith('<div id="banner"><h1>Campaign Contributions</h1><br><h2> from ' + c +' to Democrats in ' + y +'</h2></div>');
+			$('#banner').replaceWith('<div id="banner"><h1>Campaign Contributions</h1><br><h2> from ' + c +' to Democrats</h2></div>');
 			return;
 		} else if(p == "R"){
-			$('#banner').replaceWith('<div id="banner"><h1>Campaign Contributions</h1><br><h2> from ' + c +' to Republicans in ' + y +'</h2></div>');
+			$('#banner').replaceWith('<div id="banner"><h1>Campaign Contributions</h1><br><h2> from ' + c +' to Republicans</h2></div>');
 			return;
 		}
 		else{
-			$('#banner').replaceWith('<div id="banner"><h1>Campaign Contributions</h1><br><h2> from ' + c +' to Other in ' + y +'</h2></div>');
+			$('#banner').replaceWith('<div id="banner"><h1>Campaign Contributions</h1><br><h2> from ' + c +' to Other</h2></div>');
 			return;
 		}
 	}
