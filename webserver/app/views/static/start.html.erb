@@ -5,7 +5,14 @@
 	<title>Chloropleth</title>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.js" type="text/javascript" charset="utf-8"></script>
-	<script src="http://d3js.org/d3.v3.min.js"></script>		
+	<script src="http://d3js.org/d3.v3.min.js"></script>	
+	<script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>	
+	<script type="text/javascript">
+		$(function() {
+    		$( ".datepicker" ).datepicker();
+  		});
+
+	</script>
 
 	<style type="text/css">
    		.legend rect {
@@ -2510,8 +2517,15 @@
 						<input type="radio" name="party" value="D" checked="checked">Democrat<br>
 						<input type="radio" name="party" value="R" checked="checked">Republican<br>
 						<input type="radio" name="party" value="O" checked="checked">Other
-					<td>
-
+					</td>
+					<tr>
+					<td>Start Date:</td>
+					<td><input type="text" id="startDatepicker" class= "datepicker"/></td>
+					</tr>
+					<tr>
+					<td>End Date:</td>
+					<td><input type="text" id="endDatepicker" class= "datepicker"/></td>
+					</tr>
 				</table>
 				<input type="submit" id="button" class="btn btn-large" value="Submit">
 				</form>
