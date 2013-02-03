@@ -14,6 +14,11 @@ h2 {
     text-align: center;
 }
 
+#ui-datepicker-div
+{
+    background-color: white;
+}
+
 .mapTitle {
     height: 120px;
 }
@@ -94,4 +99,5 @@ table {
 #details{
     float: right;    
     height: 100px;
+    margin-right: 100px;
 }

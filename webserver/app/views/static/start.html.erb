@@ -9,7 +9,20 @@
 	<script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>	
 	<script type="text/javascript">
 		$(function() {
-    		$( ".datepicker" ).datepicker();
+    		//$( ".datepicker" ).datepicker();
+    		$('#startDatepicker').datepicker({
+				    format: 'mm/dd/yyyy',
+				    defaultDate: '01/01/2012'
+    		});
+
+    		$('#startDatepicker').datepicker("setDate", '01/01/2012');
+
+    		$('#endDatepicker').datepicker({
+				    format: 'mm/dd/yyyy',
+						defaultDate: '12/31/2012'				    
+    		});
+    		$('#endDatepicker').datepicker("setDate", '12/31/2012');
+
   		});
 
 	</script>
@@ -2501,7 +2514,7 @@
 					</tr>
 
 					<tr>
-					<td>Year:</td>
+<!-- 					<td>Year:</td>
 					<td><select id="year">
 							<option value="2012">2012</option>
 							<option value="2011">2011</option>
@@ -2510,7 +2523,7 @@
 							<option value="2008">2008</option>
 						</select>
 					</td>
-					</tr>
+ -->					</tr>
 					<tr>
 					<td>Party:</td>
 					<td>
@@ -2530,9 +2543,6 @@
 				<input type="submit" id="button" class="btn btn-large" value="Submit">
 				</form>
 			</div>
-			<div id="details">
-				<h2> Amount: </h2>
-			</div>
 
 		</div> <!-- End of row_2 -->
 
@@ -2550,9 +2560,14 @@
 
 			var industry = null;
 			var company = null;
+
 			var year = null;
 			var party = null;
 			var max = {}; 
+			var sDate = null;
+			var startDate = null; 
+			var endDate = null; 
+			
 			$(function(){
 
 				$(":radio").click(function(){
@@ -2570,7 +2585,10 @@
 					industry = $("select#industry").val(); 
 					company = $("input#company").val(); 
 					year = $("select#year").val(); 
-					var dataString = 'contributor_ft='+ company + '&year=' + year;
+					startDate = $('#startDatepicker').val(); 
+					endDate = $('#endDatepicker').val();
+
+					var dataString = 'contributor_ft=' + company + '&startDate=' + startDate + '&endDate' + endDate;
 					party = $("input:radio:checked").val();
 					console.log(party); 
 					// var dataString = 'contributor_ft='+ company+ '&date=><|'+ year + '-01-01|'+ year+ '-12-31';
@@ -2629,14 +2647,14 @@
 	function addTitle(c, y, p) {
 		// alert(c + y + p);
 		if(p == "D"){
-			$('#banner').replaceWith('<div id="banner"><h1>Campaign Contributions</h1><br><h2> from ' + c +' to Democrats in ' + y +'</h2></div>');
+			$('#banner').replaceWith('<div id="banner"><h1>Campaign Contributions</h1><br><h2> from ' + c +' to Democrats</h2></div>');
 			return;
 		} else if(p == "R"){
-			$('#banner').replaceWith('<div id="banner"><h1>Campaign Contributions</h1><br><h2> from ' + c +' to Republicans in ' + y +'</h2></div>');
+			$('#banner').replaceWith('<div id="banner"><h1>Campaign Contributions</h1><br><h2> from ' + c +' to Republicans</h2></div>');
 			return;
 		}
 		else{
-			$('#banner').replaceWith('<div id="banner"><h1>Campaign Contributions</h1><br><h2> from ' + c +' to Other in ' + y +'</h2></div>');
+			$('#banner').replaceWith('<div id="banner"><h1>Campaign Contributions</h1><br><h2> from ' + c +' to Other</h2></div>');
 			return;
 		}
 	}
@@ -2690,7 +2708,6 @@
 				}
 			}
 			});
-			$('#fedSenateTitle').replaceWith('<div id ="fedSenateTitle" class="mapTitle"><h1>Federal Senate</h1><h2> X states received donations</h2></div>');
 		}
 
 
@@ -2747,7 +2764,6 @@
 			// return "fill:#CCC;stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none" 
 
 		});
-		$('#fedHouseTitle').replaceWith('<div id ="fedHouseTitle" class="mapTitle"><h1>Federal House</h1><h2> X districts received donations</h2></div>');
 	}
 
 
@@ -2800,7 +2816,7 @@
 					}
 				}
 				});
-				$('#stateTitle').replaceWith('<div id ="stateTitle" class="mapTitle"><h1>State (both Houses & Governor)</h1><h2> X states received donations</h2></div>');
+				
 			}
 
 
@@ -2829,11 +2845,11 @@
 				});
 
 			}
-	 		$('#details').replaceWith('<div id ="details" class="mapTitle"><h1>Amount: $'+amount+'</h1></div>');
+	 		$('#fedSenateTitle').replaceWith('<div id ="fedSenateTitle" class="mapTitle"><h1>Federal Senate</h1><br/><h2>Amount: $'+amount+'</h2></div>');
 	 	})
 	 	.on('mouseout', function(d){
-	 		$('#details').replaceWith('<div id ="details" class="mapTitle"><h1>Amount:</h1></div>');
-	 	});
+	 		$('#fedSenateTitle').replaceWith('<div id ="fedSenateTitle" class="mapTitle"><h1>Federal Senate</h1></div>');
+	 	});		
 		
 	var hov2 = d3.selectAll('#svg2 path')
 	 	.on('mouseover', function(d){
@@ -2860,11 +2876,12 @@
 				});
 
 			}
-	 		$('#details').replaceWith('<div id ="details" class="mapTitle"><h1>Amount: $'+amount+'</h1></div>');
+	 		$('#fedHouseTitle').replaceWith('<div id ="fedHouseTitle" class="mapTitle"><h1>Federal House</h1><br/><h2>Amount: $'+amount+'</h2></div>');
 	 	})
 	 	.on('mouseout', function(d){
-	 		$('#details').replaceWith('<div id ="details" class="mapTitle"><h1>Amount:</h1></div>');
-	 	});
+	 		$('#fedHouseTitle').replaceWith('<div id ="fedHouseTitle" class="mapTitle"><h1>Federal House</h1></div>');
+	 	});		
+
 			
 	var hov3 = d3.selectAll('#svg3 path')
 	 	.on('mouseover', function(d){
@@ -2891,10 +2908,10 @@
 				});
 
 			}
-	 		$('#details').replaceWith('<div id ="details" class="mapTitle"><h1>Amount: $'+amount+'</h1></div>');
+	 		$('#stateTitle').replaceWith('<div id ="stateTitle" class="mapTitle"><h1>State (Both houses & Governor)</h1><br/><h2>Amount: $'+amount+'</h2></div>');
 	 	})
 	 	.on('mouseout', function(d){
-	 		$('#details').replaceWith('<div id ="details" class="mapTitle"><h1>Amount:</h1></div>');
+	 		$('#stateTitle').replaceWith('<div id ="stateTitle" class="mapTitle"><h1>State (Both houses & Governor)</h1></div>');
 	 	});		
 
 	// var state = d3.selectAll('#svg1 path').attr('style', function(d){
@@ -2936,6 +2953,7 @@
 		//alert(JSON.stringify(max))
 		if (max == {})
 		{
+			max = {}; 
 			max.dem_don = 5000; 
 			max.repub_don = 5000;
 			max.other_don = 5000; 
@@ -2967,18 +2985,30 @@
 		var legendGradientHeight = 200;
 		var extraTranslateRight = 100;
 		var hue = 230;
+		var red = 128;
+		var green = 128; 
+		var blue = 128; 
 
 		if (party == "R")
 		{
 			hue = 0; 
+			red = 255;
+			green = 0; 
+			blue = 0;
 		}
 		else if (party == "D")
 		{
 			hue = 230;
+			red = 0;
+			green = 0; 
+			blue = 255;			
 		}
 		else 
 		{
 			hue = 120;
+			red = 0;
+			green = 255; 
+			blue = 0;			
 		}
 
 		var svg = d3.select('#row_2')
@@ -3010,9 +3040,11 @@
 			})
 			.attr('width', legendGradientWidth)
 			.attr('height', 2)
-			.style('fill', function (d, i) {
-				return d3.hsl(hue, 1, d);
-			});
+			.style('fill', function (d, i) 
+				{
+					//alert('d = ' + d + ' and i = ' + i);
+					return d3.rgb(red*(1-d), green*(1-d), blue*(1-d));
+				});
 
 		legendTicks.selectAll('text')
 			.data([maxValue, minValue])
