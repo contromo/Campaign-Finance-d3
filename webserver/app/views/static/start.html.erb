@@ -5,7 +5,14 @@
 	<title>Chloropleth</title>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.js" type="text/javascript" charset="utf-8"></script>
-	<script src="http://d3js.org/d3.v3.min.js"></script>		
+	<script src="http://d3js.org/d3.v3.min.js"></script>	
+	<script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>	
+	<script type="text/javascript">
+		$(function() {
+    		$( ".datepicker" ).datepicker();
+  		});
+
+	</script>
 
 	<style type="text/css">
    		.legend rect {
@@ -43,7 +50,9 @@
 
 		<div class='row' class='span12' id='row_1'>
 			<div id='fedSenate' class='span6'>
+				<div id ='fedSenateTitle' class='mapTitle'>
 					<h1>Federal Senate</h1>
+				</div>
 					<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 					<svg
 					   xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -369,7 +378,9 @@
 					</svg>
 			</div>
 			<div id='fedHouse' class='span6'>
-				<h1>Federal House</h1>
+				<div id ='fedHouseTitle' class='mapTitle'>
+					<h1>Federal House</h1>
+				</div>
 				<svg
 				   xmlns:svg="http://www.w3.org/2000/svg"
 				   xmlns="http://www.w3.org/2000/svg"
@@ -2134,7 +2145,9 @@
 		</div> <!-- End of row_1 -->
 		<div class='row' class='span12' id='row_2'>
 			<div id='state' class='span6'>
-				<h1>State (both Houses & Governor)</h1>
+				<div id ='stateTitle' class='mapTitle'>
+					<h1>State (both Houses & Governor)</h1>
+				</div>
 				<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 				<svg
 				   xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -2504,12 +2517,23 @@
 						<input type="radio" name="party" value="D" checked="checked">Democrat<br>
 						<input type="radio" name="party" value="R" checked="checked">Republican<br>
 						<input type="radio" name="party" value="O" checked="checked">Other
-					<td>
-
+					</td>
+					<tr>
+					<td>Start Date:</td>
+					<td><input type="text" id="startDatepicker" class= "datepicker"/></td>
+					</tr>
+					<tr>
+					<td>End Date:</td>
+					<td><input type="text" id="endDatepicker" class= "datepicker"/></td>
+					</tr>
 				</table>
 				<input type="submit" id="button" class="btn btn-large" value="Submit">
 				</form>
 			</div>
+			<div id="details">
+				<h2> Amount: </h2>
+			</div>
+
 		</div> <!-- End of row_2 -->
 
 	</div> <!-- End of Wrapper -->
@@ -2664,7 +2688,7 @@
 				}
 			}
 			});
-
+			$('#fedSenateTitle').replaceWith('<div id ="fedSenateTitle" class="mapTitle"><h1>Federal Senate</h1><h2> X states received donations</h2></div>');
 		}
 
 
@@ -2721,6 +2745,7 @@
 			// return "fill:#CCC;stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none" 
 
 		});
+		$('#fedHouseTitle').replaceWith('<div id ="fedHouseTitle" class="mapTitle"><h1>Federal House</h1><h2> X districts received donations</h2></div>');
 	}
 
 
@@ -2773,7 +2798,7 @@
 					}
 				}
 				});
-
+				$('#stateTitle').replaceWith('<div id ="stateTitle" class="mapTitle"><h1>State (both Houses & Governor)</h1><h2> X states received donations</h2></div>');
 			}
 
 
