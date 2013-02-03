@@ -9,7 +9,20 @@
 	<script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>	
 	<script type="text/javascript">
 		$(function() {
-    		$( ".datepicker" ).datepicker();
+    		//$( ".datepicker" ).datepicker();
+    		$('#startDatepicker').datepicker({
+				    format: 'mm/dd/yyyy',
+				    defaultDate: '01/01/2012'
+    		});
+
+    		$('#startDatepicker').datepicker("setDate", '01/01/2012');
+
+    		$('#endDatepicker').datepicker({
+				    format: 'mm/dd/yyyy',
+						defaultDate: '12/31/2012'				    
+    		});
+    		$('#endDatepicker').datepicker("setDate", '12/31/2012');
+
   		});
 
 	</script>

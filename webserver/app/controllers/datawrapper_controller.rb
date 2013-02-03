@@ -18,9 +18,10 @@ class DatawrapperController < ApplicationController
 
 		dateQuery = '&date=><|2012-01-01|2012-12-31'
 		if !startDate.nil? && !endDate.nil? 
-			url += '&date=><|' + parseDate(startDate) + '|' + parseDate(endDate)
+			dateQuery = '&date=><|' + parseDate(startDate) + '|' + parseDate(endDate)
 		end
 
+		url += dateQuery
 		# if !year.nil? 
 		# 	url += '&date=><|' + year + '-01-01|' + year + '-12-31' 
 		# else 
