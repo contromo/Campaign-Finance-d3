@@ -12,8 +12,6 @@ h1 {
 #legend_map
 {
     z-index: 999;
-    border:solid;
-    border-color: red;
 }
 
 #form_cell
