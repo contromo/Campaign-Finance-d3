@@ -5,8 +5,13 @@ body {
 }
 
 h1 {
-	color: white;
+	color: black;
 	text-align: center;
+}
+
+h2 {
+    color: black;
+    text-align: center;
 }
 
 #legend_map
@@ -26,13 +31,14 @@ h1 {
 	margin-left: auto;
 	border-right: 2px solid #000000;
 	border-left: 2px solid #000000;
-	background: black;
+	background: grey;
     width: 1800px;
 }
 
 #banner {
     text-align: center;
-    color: white;
+    color: black;
+    height: 130px;
     /*padding-left: 10px;*/
     /*border-left: 1px dashed #999999;*/
 }
@@ -67,7 +73,7 @@ table tr td{
 	text-align: center;
    	float: left;
     width: 200px;
-    color: white;
+    color: black;
 }
 
 table {
