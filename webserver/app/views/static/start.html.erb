@@ -2570,7 +2570,10 @@
 					industry = $("select#industry").val(); 
 					company = $("input#company").val(); 
 					year = $("select#year").val(); 
-					var dataString = 'contributor_ft='+ company + '&year=' + year;
+					var startDate = $('#startDatepicker').val(); 
+					var endDate = $('#endDatepicker').val();
+
+					var dataString = 'contributor_ft='+ company + '&startDate=' + startDate + '&endDate' = endDate;
 					party = $("input:radio:checked").val();
 					console.log(party); 
 					// var dataString = 'contributor_ft='+ company+ '&date=><|'+ year + '-01-01|'+ year+ '-12-31';
@@ -2840,6 +2843,7 @@
 	{
 		if (max == null)
 		{
+			max = {}; 
 			max.dem_don = 5000; 
 			max.repub_don = 5000;
 			max.other_don = 5000; 
@@ -2869,18 +2873,30 @@
 		var legendGradientHeight = 200;
 		var extraTranslateRight = 100;
 		var hue = 230;
+		var red = 128;
+		var green = 128; 
+		var blue = 128; 
 
 		if (party == "R")
 		{
 			hue = 0; 
+			red = 255;
+			green = 0; 
+			blue = 0;
 		}
 		else if (party == "D")
 		{
 			hue = 230;
+			red = 0;
+			green = 0; 
+			blue = 255;			
 		}
 		else 
 		{
 			hue = 120;
+			red = 0;
+			green = 255; 
+			blue = 0;			
 		}
 
 		var svg = d3.select('#row_2')
@@ -2912,9 +2928,11 @@
 			})
 			.attr('width', legendGradientWidth)
 			.attr('height', 2)
-			.style('fill', function (d, i) {
-				return d3.hsl(hue, 1, d);
-			});
+			.style('fill', function (d, i) 
+				{
+					//alert('d = ' + d + ' and i = ' + i);
+					return d3.rgb(red*(1-d), green*(1-d), blue*(1-d));
+				});
 
 		legendTicks.selectAll('text')
 			.data([maxValue, minValue])
