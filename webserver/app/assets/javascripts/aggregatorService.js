@@ -323,29 +323,38 @@ function DumpDict(pDict)
 /*This function assumes that the incoming json has properties dem_don and repub_don!!!!*/
 function calcMaxContrib(pJsonData)
 {
-	var max = {};
-	max.dem_don = 0;
-	max.repub_don = 0;
-	max.other_don = 0; 
+	var _max = {};
+	_max.dem_don = 0;
+	_max.repub_don = 0;
+	_max.other_don = 0;
 	$.each(pJsonData, function(key, data){
-		if(data.recipient_party == "D" && data.amount > max.dem_don)
+		if(parseInt(data.dem_don,10) > parseInt(_max.dem_don, 10))
 		{
-			max.dem_don = data.amount;
+			_max.dem_don = data.dem_don;
 		}
-		if(data.recipient_party == "R" && data.amount > max.repub_don)
+		if(parseInt(data.repub_don,10) > parseInt(_max.repub_don,10))
 		{
-			max.repub_don = data.amount;
+			_max.repub_don = data.repub_don;
 		}
-		if (data.recipient_party != "D" && data.recipient_party != "R" && data.amount > max.other_don)
+		if(parseInt(data.other_don,10) > parseInt(_max.other_don,10))
 		{
-			max.other_don = data.amount; 
-		} 
+			_max.other_don = data.other_don;
+		}
 	});
 
-	console.log(JSON.stringify(max));
-	return max;
+	console.log(JSON.stringify(_max));
+	return _max;
 
 	// The inclusion of this function is only for debugging purposes.
 	//DumpDict(mDict);
 
+}
+function GenerateMaxFromMaxJSON(pJsonData1, pJsonData2, pJsonData3)
+{
+	var _max = {};
+	_max.dem_don = Math.max(parseInt(pJsonData1.dem_don, 10), parseInt(pJsonData2.dem_don, 10), parseInt(pJsonData3.dem_don, 10));
+	_max.repub_don = Math.max(parseInt(pJsonData1.repub_don, 10), parseInt(pJsonData2.repub_don, 10), parseInt(pJsonData3.repub_don, 10));
+	_max.other_don = Math.max(parseInt(pJsonData1.other_don, 10), parseInt(pJsonData2.other_don, 10), parseInt(pJsonData3.other_don, 10));
+
+	return _max;
 }

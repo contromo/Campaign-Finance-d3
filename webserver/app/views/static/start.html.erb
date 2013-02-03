@@ -2552,7 +2552,7 @@
 			var company = null;
 			var year = null;
 			var party = null;
-			var max = null; 
+			var max = {}; 
 			$(function(){
 
 				$(":radio").click(function(){
@@ -2595,10 +2595,12 @@
 						    colorFedHouse();
 						    colorState();
 
-						    max = calcMaxContrib(data);
-						    //drawLegend();
+					    	max = GenerateMaxFromMaxJSON(calcMaxContrib(fedSenateResult), calcMaxContrib(fedHouseResult), calcMaxContrib(stateResult));
+						    setLegendValuesAndDraw();
 
-						    console.log(calcMaxContrib(fedHouseResult));
+						    console.log("Max for federal:house is " + calcMaxContrib(fedHouseResult));
+						    console.log("Max for federal:senate is " + calcMaxContrib(fedSenateResult));
+						    console.log("Max for stateResult is " + calcMaxContrib(stateResult));
 						  }  
 						});  
 						return false;
@@ -2931,7 +2933,8 @@
 
 	function setLegendValuesAndDraw() 
 	{
-		if (max == null)
+		//alert(JSON.stringify(max))
+		if (max == {})
 		{
 			max.dem_don = 5000; 
 			max.repub_don = 5000;
@@ -2940,11 +2943,13 @@
 		
 		if (party == "D")
 		{
+			//alert("dem: " + max.dem_don);
 			removeLegend(); 
 			drawLegend(0, max.dem_don); 
 		} 
 		else if (party == "R")
 		{
+			//alert("rep: " + max.repub_don);
 			removeLegend(); 
 			drawLegend(0, max.repub_don); 
 		}
