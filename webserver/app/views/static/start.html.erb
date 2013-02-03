@@ -107,8 +107,10 @@
 						  success: function(data) {
 						  	sData = data;  
 						    console.log(sData);						    
-						    fedHouseResult = calcHouseSumPerDistrict(data); 
+						    fedHouseResult = calcHouseSumPerDistrict(data);
+						    stateResult = calcStateSum(data); 
 						    console.log(fedHouseResult);
+						    console.log(stateResult);
 						    colorFedHouse();
 						    console.log(calcMaxContrib(fedHouseResult));
 
