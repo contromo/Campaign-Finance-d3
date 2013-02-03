@@ -2501,7 +2501,7 @@
 					</tr>
 
 					<tr>
-					<td>Year:</td>
+<!-- 					<td>Year:</td>
 					<td><select id="year">
 							<option value="2012">2012</option>
 							<option value="2011">2011</option>
@@ -2510,7 +2510,7 @@
 							<option value="2008">2008</option>
 						</select>
 					</td>
-					</tr>
+ -->					</tr>
 					<tr>
 					<td>Party:</td>
 					<td>
@@ -2553,6 +2553,8 @@
 			var year = null;
 			var party = null;
 			var max = null; 
+			var startDate = null; 
+			var endDate = null; 
 			$(function(){
 
 				$(":radio").click(function(){
@@ -2570,10 +2572,10 @@
 					industry = $("select#industry").val(); 
 					company = $("input#company").val(); 
 					year = $("select#year").val(); 
-					var startDate = $('#startDatepicker').val(); 
-					var endDate = $('#endDatepicker').val();
+					startDate = $('#startDatepicker').val(); 
+					endDate = $('#endDatepicker').val();
 
-					var dataString = 'contributor_ft='+ company + '&startDate=' + startDate + '&endDate' = endDate;
+					var dataString = 'contributor_ft=' + company + '&startDate=' + startDate + '&endDate' + endDate;
 					party = $("input:radio:checked").val();
 					console.log(party); 
 					// var dataString = 'contributor_ft='+ company+ '&date=><|'+ year + '-01-01|'+ year+ '-12-31';
