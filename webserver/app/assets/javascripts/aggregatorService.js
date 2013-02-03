@@ -27,7 +27,7 @@ function calcSumPerDistrict(pJsonData)
 					var temp_amount = parseInt(amount_obj, 10) + parseInt(temp.repub_don, 10);
 					mDict[district].repub_don = temp_amount;
 				}
-				else if(data.recipient_part == "D")
+				else if(data.recipient_party == "D")
 				{
 					var temp_amount = parseInt(amount_obj, 10) + parseInt(temp.dem_don, 10);
 					mDict[district].dem_don = temp_amount;
@@ -50,7 +50,7 @@ function calcSumPerDistrict(pJsonData)
 
 					mDict[district] = json;
 				}
-				else if(data.recipient_part == "D")
+				else if(data.recipient_party == "D")
 				{
 					var json = {};
 					json.district = district;
