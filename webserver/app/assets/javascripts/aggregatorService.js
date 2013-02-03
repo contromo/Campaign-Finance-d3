@@ -2,7 +2,7 @@
 /*With the federal:house query as input, calculates the sum of campaign contributions per district and per party*/
 function calcHouseSumPerDistrict(pJsonData)
 {
-	console.log("calcHouseSumPerDistrict");
+	// console.log("calcHouseSumPerDistrict");
 
 	var result_json = [];
 	var mDict = {};
@@ -91,7 +91,7 @@ function calcHouseSumPerDistrict(pJsonData)
 /*With federal:senate query as the input, this function outputs the federal:senate contributions per state*/
 function calcSenateSumPerState(pJsonData)
 {
-	console.log("calcSumPerState");
+	// console.log("calcSumPerState");
 
 	var result_json = [];
 	var mDict = {};
@@ -180,7 +180,7 @@ function calcSenateSumPerState(pJsonData)
 /*Outputs the a block of json per state that has the summed contributions by each party for state:governor, state:upper, state:lower*/
 function calcStateSum(pJsonData)
 {
-	console.log("calcStateSum");
+	// console.log("calcStateSum");
 
 	var result_json = [];
 	var mDict = {};

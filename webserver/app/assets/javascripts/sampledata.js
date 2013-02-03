@@ -57,7 +57,7 @@
 						  success: function(data) {
 						  	sData = data;  
 						    console.log(sData);						    
-						    jsonResult = calcSumPerDistrict("federal:house", data); 
+						    jsonResult = calcHouseSumPerDistrict("federal:house", data); 
 						    console.log(jsonResult)
 						  }  
 						});  

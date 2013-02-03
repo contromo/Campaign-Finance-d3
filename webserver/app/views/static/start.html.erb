@@ -2512,6 +2512,7 @@
 
 	<script type="text/javascript">
 			var sData= null;
+			var fedSenateResult=null;
 			var fedHouseResult=null;
 			var stateResult=null;
 
@@ -2532,11 +2533,13 @@
 						  data: dataString,  
 						  success: function(data) {
 						  	sData = data;  
-						    console.log(sData);						    
+						    console.log(sData);
+						    fedSenateResult = calcSenateSumPerState(data);
 						    fedHouseResult = calcHouseSumPerDistrict(data);
 						    stateResult = calcStateSum(data); 
 						    console.log(fedHouseResult);
-						    console.log(stateResult);
+						    console.log(fedSenateResult);
+						    colorFedSenate();
 						    colorFedHouse();
 						    console.log(calcMaxContrib(fedHouseResult));
 
@@ -2571,6 +2574,38 @@
 	// d3.selectAll('#svg1 path').attr('style', 'fill:red;stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none' );  
 		console.log(statejson);
 
+
+	function colorFedSenate(){
+		var sAmount =null;
+		var fSenate = d3.selectAll('#svg1 path').attr('style', function(d){
+ 
+		// Get the ID of the path we are currently working with
+		// Our SVG uses the state abbreviation for the ID
+		var abbr = this.id;
+	 
+		// Loop through the state data looking for
+		// a match for that abbreviation
+		// Then returning the corresponding president
+		// who won that state, from the array we made earlier
+		if(fedHouseResult){
+			var found = false;
+			$.each(fedSenateResult, function(key, data){
+				if(data.state == abbr){
+					found=true;
+					sAmount = data.repub_don/5000;
+					return;
+
+				}
+			});
+			if (found){
+				return "fill:"+rColor(sAmount)+";stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none"
+			}
+			else {
+				return "fill:white;stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none" 
+			}
+		}
+		});
+	}	
 	
 	function colorFedHouse() {
 		var dAmount = null;
@@ -2608,34 +2643,34 @@
 	}
 
 
-	var state = d3.selectAll('#svg1 path').attr('style', function(d){
+	// var state = d3.selectAll('#svg1 path').attr('style', function(d){
  
-		// Get the ID of the path we are currently working with
-		// Our SVG uses the state abbreviation for the ID
-		var abbr = this.id;
+	// 	// Get the ID of the path we are currently working with
+	// 	// Our SVG uses the state abbreviation for the ID
+	// 	var abbr = this.id;
 	 
-		// Loop through the state data looking for
-		// a match for that abbreviation
-		// Then returning the corresponding president
-		// who won that state, from the array we made earlier
-		$.each(state_data, function(key, data){
-			if(data.state_abbr == abbr){
-				state_president = data.president;
-			}
-		})
+	// 	// Loop through the state data looking for
+	// 	// a match for that abbreviation
+	// 	// Then returning the corresponding president
+	// 	// who won that state, from the array we made earlier
+	// 	$.each(state_data, function(key, data){
+	// 		if(data.state_abbr == abbr){
+	// 			state_president = data.president;
+	// 		}
+	// 	})
 	 
-		// Return colors
-		// based on data					
-		if(state_president == "Obama"){
-			return "fill:blue;stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none"
-		}
-		else if(state_president == "McCain"){
-			return "fill:red;stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none"
-		}
-		else {
-			return "fill:#CCC;stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none"
-		}
-	});
+	// 	// Return colors
+	// 	// based on data					
+	// 	if(state_president == "Obama"){
+	// 		return "fill:blue;stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none"
+	// 	}
+	// 	else if(state_president == "McCain"){
+	// 		return "fill:red;stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none"
+	// 	}
+	// 	else {
+	// 		return "fill:#CCC;stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none"
+	// 	}
+	// });
 
 	
 
