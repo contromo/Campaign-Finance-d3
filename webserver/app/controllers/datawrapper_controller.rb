@@ -10,7 +10,7 @@ class DatawrapperController < ApplicationController
 		endDate = params['endDate']
 
 		page = parsePage
-		url = "http://transparencydata.com/api/1.0/contributions.json?apikey=" + apikey + "&seat=state:governor|state:upper|state:lower|federal:senate|federal:house|federal:president&per_page=1000&page=" + page		
+		url = "http://transparencydata.com/api/1.0/contributions.json?apikey=" + apikey + "&seat=state:governor|state:upper|state:lower|federal:senate|federal:house|federal:president&per_page=10000&page=" + page		
 		
 		if !contributor_ft.nil?
 			url += '&contributor_ft=' + contributor_ft
