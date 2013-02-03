@@ -277,28 +277,28 @@ function calcPresContrib(pJsonData)
 	var other_amount = 0;
 
 	$.each(pJsonData, function(key, data){
-	if(data.seat == "federal:president")
-	{
-		if(data.recipient_party == "R")
+		if(data.seat == "federal:president")
 		{
-			repub_amount += parseInt(data.amount, 10);
+			if(data.recipient_party == "R")
+			{
+				repub_amount += parseInt(data.amount, 10);
+			}
+			else if(data.recipient_party == "D")
+			{
+				dem_amount += parseInt(data.amount, 10);
+			}
+			else
+			{
+				other_amount += parseInt(data.amount, 10);
+			}
 		}
-		else if(data.recipient_party == "D")
-		{
-			dem_amount += parseInt(data.amount, 10);
-		}
-		else
-		{
-			other_amount += parseInt(data.amount, 10);
-		}
-	}
 
 	});
 
 	var json = {};
-	json.repub_amount = repub_amount;
-	json.dem_amount = dem_amount;
-	json.other_amount = other_amount;
+	json.repub_don = repub_amount;
+	json.dem_don = dem_amount;
+	json.other_don = other_amount;
 
 	result_json.push(json);
 
@@ -319,90 +319,28 @@ function DumpDict(pDict)
 	alert(s);
 }
 
-function calcMaxPerDistrict(pSeatType, pJsonData)
+/*This function assumes that the incoming json has properties dem_don and repub_don!!!!*/
+function calcMaxContrib(pJsonData)
 {
-//Example data. This should be discarded once the pJsonData variable is fed into this function
-
-var result_json = [];
-var mDict = {};
-
-$.each(pJsonData, function(key, data){
-if(data.seat == pSeatType)
-{
-	if(data.district == null || data.district.toString() == "")
-	{
-		console.log("Iteration: " + key.toString() + " has a blank/null district");
-	}
-	else
-	{
-		var district = data.district.toString().replace("-","_");
-		var amount_obj = data.amount;
-
-		var temp = mDict[district];
-
-		if(typeof(temp) != 'undefined')
+	var max = {};
+	max.dem_don = 0;
+	max.repub_don = 0;
+	$.each(pJsonData, function(key, data){
+		if(data.dem_don > max.dem_don)
 		{
-			if(data.recipient_party == "R")
-			{
-				var temp_amount = parseInt(amount_obj, 10) + parseInt(temp.repub_don, 10);
-				mDict[district].repub_don = temp_amount;
-			}
-			else if(data.recipient_part == "D")
-			{
-				var temp_amount = parseInt(amount_obj, 10) + parseInt(temp.dem_don, 10);
-				mDict[district].dem_don = temp_amount;
-			}
-			else
-			{
-				var temp_amount = parseInt(amount_obj, 10) + parseInt(temp.other_don, 10);
-				mDict[district].other_don = temp_amount;
-			}
+			max.dem_don = data.dem_don;
 		}
-		else
+
+		if(data.repub_don > max.repub_don)
 		{
-			if(data.recipient_party == "R")
-			{
-				var json = {};
-				json.district = district;
-				json.repub_don = amount_obj.toString();
-				json.dem_don = 0;
-				json.other_don = 0;
-
-				mDict[district] = json;
-			}
-			else if(data.recipient_part == "D")
-			{
-				var json = {};
-				json.district = district;
-				json.repub_don = 0;
-				json.dem_don = amount_obj.toString();
-				json.other_don = 0;
-
-				mDict[district] = json;
-			}
-			else
-			{
-				var json = {};
-				json.district = district;
-				json.repub_don = 0;
-				json.dem_don = 0;
-				json.other_don = amount_obj.toString();
-				mDict[district] = json;
-			}
+			max.repub_don = data.repub_don;
 		}
-	}
-}
+	});
 
-});
+	console.log(JSON.stringify(max));
+	return max;
 
-for(var p in mDict)
-{
-	result_json.push(mDict[p]);
-}
-
-return result_json;
-
-// The inclusion of this function is only for debugging purposes.
-//DumpDict(mDict);
+	// The inclusion of this function is only for debugging purposes.
+	//DumpDict(mDict);
 
 }

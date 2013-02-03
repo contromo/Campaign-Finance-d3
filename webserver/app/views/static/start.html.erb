@@ -105,7 +105,9 @@
 						  success: function(data) {
 						  	sData = data;  
 						    console.log(sData);						    
-						    jsonResult = calcSumPerDistrict(data); 
+						    jsonResult = calcHouseSumPerDistrict(data); 
+						    console.log(calcMaxContrib(jsonResult));
+
 						    console.log(jsonResult)
 						  }  
 						});  
