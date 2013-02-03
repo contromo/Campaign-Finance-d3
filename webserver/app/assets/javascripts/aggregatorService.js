@@ -185,72 +185,73 @@ function calcStateSum(pJsonData)
 	var result_json = [];
 	var mDict = {};
 
-	$.each(pJsonData, function(key, data){
-	if(data.seat == "state:governore" || data.seat == "state:lower" || data.seat == "state:upper")
+	$.each(pJsonData, function(key, data)
 	{
-		if(data.recipient_state == null || data.recipient_state.toString() == "")
+		if(data.seat == "state:governor" || data.seat == "state:lower" || data.seat == "state:upper")
 		{
-			console.log("Iteration: " + key.toString() + " has a blank/null state");
-		}
-		else
-		{
-			var state = data.recipient_state.toString();
-			var amount_obj = data.amount;
-
-			var temp = mDict[state];
-
-			if(typeof(temp) != 'undefined')
+			if(data.recipient_state == null || data.recipient_state.toString() == "")
 			{
-				if(data.recipient_party == "R")
-				{
-					var temp_amount = parseInt(amount_obj, 10) + parseInt(temp.repub_don, 10);
-					mDict[state].repub_don = temp_amount;
-				}
-				else if(data.recipient_party == "D")
-				{
-					var temp_amount = parseInt(amount_obj, 10) + parseInt(temp.dem_don, 10);
-					mDict[state].dem_don = temp_amount;
-				}
-				else
-				{
-					var temp_amount = parseInt(amount_obj, 10) + parseInt(temp.other_don, 10);
-					mDict[state].other_don = temp_amount;
-				}
+				console.log("Iteration: " + key.toString() + " has a blank/null state");
 			}
 			else
 			{
-				if(data.recipient_party == "R")
-				{
-					var json = {};
-					json.state = state;
-					json.repub_don = amount_obj.toString();
-					json.dem_don = 0;
-					json.other_don = 0;
+				var state = data.recipient_state.toString();
+				var amount_obj = data.amount;
 
-					mDict[state] = json;
-				}
-				else if(data.recipient_party == "D")
-				{
-					var json = {};
-					json.state = state;
-					json.repub_don = 0;
-					json.dem_don = amount_obj.toString();
-					json.other_don = 0;
+				var temp = mDict[state];
 
-					mDict[state] = json;
+				if(typeof(temp) != 'undefined')
+				{
+					if(data.recipient_party == "R")
+					{
+						var temp_amount = parseInt(amount_obj, 10) + parseInt(temp.repub_don, 10);
+						mDict[state].repub_don = temp_amount;
+					}
+					else if(data.recipient_party == "D")
+					{
+						var temp_amount = parseInt(amount_obj, 10) + parseInt(temp.dem_don, 10);
+						mDict[state].dem_don = temp_amount;
+					}
+					else
+					{
+						var temp_amount = parseInt(amount_obj, 10) + parseInt(temp.other_don, 10);
+						mDict[state].other_don = temp_amount;
+					}
 				}
 				else
 				{
-					var json = {};
-					json.state = state;
-					json.repub_don = 0;
-					json.dem_don = 0;
-					json.other_don = amount_obj.toString();
-					mDict[state] = json;
+					if(data.recipient_party == "R")
+					{
+						var json = {};
+						json.state = state;
+						json.repub_don = amount_obj.toString();
+						json.dem_don = 0;
+						json.other_don = 0;
+
+						mDict[state] = json;
+					}
+					else if(data.recipient_party == "D")
+					{
+						var json = {};
+						json.state = state;
+						json.repub_don = 0;
+						json.dem_don = amount_obj.toString();
+						json.other_don = 0;
+
+						mDict[state] = json;
+					}
+					else
+					{
+						var json = {};
+						json.state = state;
+						json.repub_don = 0;
+						json.dem_don = 0;
+						json.other_don = amount_obj.toString();
+						mDict[state] = json;
+					}
 				}
 			}
 		}
-	}
 
 	});
 
