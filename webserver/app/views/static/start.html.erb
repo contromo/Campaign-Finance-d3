@@ -2522,13 +2522,16 @@
 			var fedSenateResult=null;
 			var fedHouseResult=null;
 			var stateResult=null;
+			var party = null;
 
 			$(function(){
 
-				var the_value;
 				$(":radio").click(function(){
-					the_value = jQuery('input:radio:checked').val();
-					alert(the_value);
+					party = jQuery('input:radio:checked').val();
+					colorFedSenate();
+					colorFedHouse();
+					colorState();
+					alert(party);
 				});
 
 				$("#button").click(function(){
@@ -2536,7 +2539,8 @@
 					var company = $("input#company").val(); 
 					var year = $("select#year").val(); 
 					var dataString = 'contributor_ft='+ company + '&year=' + year;
-					var party = $("select#year").val(); 
+					var party = $("input:radio:checked").val();
+					console.log(party); 
 					// var dataString = 'contributor_ft='+ company+ '&date=><|'+ year + '-01-01|'+ year+ '-12-31';
 
 					
@@ -2581,18 +2585,26 @@
 
 		});
 
-	var rColor = d3.scale.linear()
-    .domain([0, 1])
-    .range(["white", "red"]);
-
-    var dColor = d3.scale.linear()
-    .domain([0, 1])
-    .range(["white", "blue"]);
+    
 	// d3.selectAll('#svg1 path').attr('style', 'fill:red;stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none' );  
 		console.log(statejson);
 
 
 	function colorFedSenate(){
+		if(party=="R")
+			var color = d3.scale.linear()
+			    .domain([0, 1])
+			    .range(["white", "red"]);
+		else if(party=="D")
+			var color = d3.scale.linear()
+    			.domain([0, 1])
+    			.range(["white", "blue"]);
+		else
+			var color = d3.scale.linear()
+			    .domain([0, 1])
+			    .range(["white", "green"]);
+
+
 		var sAmount =null;
 		var fSenate = d3.selectAll('#svg1 path').attr('style', function(d){
 	 
@@ -2604,18 +2616,23 @@
 			// a match for that abbreviation
 			// Then returning the corresponding president
 			// who won that state, from the array we made earlier
-			if(fedHouseResult){
+			if(fedSenateResult){
 				var found = false;
 				$.each(fedSenateResult, function(key, data){
 					if(data.state == abbr){
 						found=true;
-						sAmount = data.repub_don/5000;
+						if(party=="R")
+							sAmount = data.repub_don/5000;
+						else if(party=="D")
+							sAmount = data.dem_don/5000;
+						else
+							sAmount = data.other_don/5000;
 						return;
 
 					}
 				});
 				if (found){
-					return "fill:"+rColor(sAmount)+";stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none"
+					return "fill:"+color(sAmount)+";stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none"
 				}
 				else {
 					return "fill:white;stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none" 
@@ -2629,6 +2646,20 @@
 		
 	
 	function colorFedHouse() {
+		if(party=="R")
+			var color = d3.scale.linear()
+			    .domain([0, 1])
+			    .range(["white", "red"]);
+		else if(party=="D")
+			var color = d3.scale.linear()
+    			.domain([0, 1])
+    			.range(["white", "blue"]);
+		else
+			var color = d3.scale.linear()
+			    .domain([0, 1])
+			    .range(["white", "green"]);
+
+
 		var dAmount = null;
 		var fHouse = d3.selectAll('#svg2 path').attr('style', function(d){
 
@@ -2640,16 +2671,20 @@
 				{
 					if(data.district == abbr){
 				 		// var dAmount = data.repub_don/5000;
-				 		console.log("fill:"+rColor(dAmount)+";stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none" );
 				 		found = true;
-				 		dAmount = data.repub_don/5000;
-				 		return;
+				 		if(party=="R")
+							dAmount = data.repub_don/5000;
+						else if(party=="D")
+							dAmount = data.dem_don/5000;
+						else
+							dAmount = data.other_don/5000;
+						return;
 				 	}
 
 				});
 				if (found)
 				{
-					return "fill:"+rColor(dAmount)+";stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none" 
+					return "fill:"+color(dAmount)+";stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none" 
 
 				}
 				else
@@ -2665,6 +2700,20 @@
 
 
 	function colorState(){
+			if(party=="R")
+				var color = d3.scale.linear()
+				    .domain([0, 1])
+				    .range(["white", "red"]);
+			else if(party=="D")
+				var color = d3.scale.linear()
+	    			.domain([0, 1])
+	    			.range(["white", "blue"]);
+			else
+				var color = d3.scale.linear()
+				    .domain([0, 1])
+				    .range(["white", "green"]);
+
+
 			var lAmount =null;
 			var state = d3.selectAll('#svg3 path').attr('style', function(d){
 		 
@@ -2681,13 +2730,18 @@
 					$.each(stateResult, function(key, data){
 						if(data.state == abbr){
 							found=true;
-							lAmount = data.repub_don/5000;
+							if(party=="R")
+								lAmount = data.repub_don/5000;
+							else if(party=="D")
+								lAmount = data.dem_don/5000;
+							else
+								lAmount = data.other_don/5000;
 							return;
 
 						}
 					});
 					if (found){
-						return "fill:"+rColor(lAmount)+";stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none"
+						return "fill:"+color(lAmount)+";stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none"
 					}
 					else {
 						return "fill:white;stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none" 
@@ -2726,12 +2780,6 @@
 	// 		return "fill:#CCC;stroke:#ffffff;stroke-opacity:1;stroke-width:0.75;stroke-miterlimit:4;stroke-dasharray:none"
 	// 	}
 	// });
-
-	
-
-    
-
-    $('#colorTest').css('background-color', rColor(.4));
 
 	function drawLegend(minValue, maxValue) {
 
