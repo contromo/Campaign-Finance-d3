@@ -1,7 +1,7 @@
 
 function calcSumPerDistrict(pJsonData)
 {
-	//Example data. This should be discarded once the pJsonData variable is fed into this function
+	console.log("calcSumerPerDistrict");
 
 	var result_json = [];
 	var mDict = {};
@@ -27,7 +27,7 @@ function calcSumPerDistrict(pJsonData)
 					var temp_amount = parseInt(amount_obj, 10) + parseInt(temp.repub_don, 10);
 					mDict[district].repub_don = temp_amount;
 				}
-				else if(data.recipient_part == "D")
+				else if(data.recipient_party == "D")
 				{
 					var temp_amount = parseInt(amount_obj, 10) + parseInt(temp.dem_don, 10);
 					mDict[district].dem_don = temp_amount;
@@ -50,7 +50,7 @@ function calcSumPerDistrict(pJsonData)
 
 					mDict[district] = json;
 				}
-				else if(data.recipient_part == "D")
+				else if(data.recipient_party == "D")
 				{
 					var json = {};
 					json.district = district;
@@ -90,7 +90,7 @@ function calcSumPerDistrict(pJsonData)
 
 function calcSumPerState(pJsonData)
 {
-	//Example data. This should be discarded once the pJsonData variable is fed into this function
+	console.log("calcSumPerState");
 
 	var result_json = [];
 	var mDict = {};
@@ -98,33 +98,33 @@ function calcSumPerState(pJsonData)
 	$.each(pJsonData, function(key, data){
 	if(data.seat == "federal:senate")
 	{
-		if(data.recipient_state == null || data.district.toString() == "")
+		if(data.recipient_state == null || data.recipient_state.toString() == "")
 		{
-			console.log("Iteration: " + key.toString() + " has a blank/null district");
+			console.log("Iteration: " + key.toString() + " has a blank/null state");
 		}
 		else
 		{
-			var district = data.district.toString().replace("-","_");
+			var state = data.recipient_state.toString();
 			var amount_obj = data.amount;
 
-			var temp = mDict[district];
+			var temp = mDict[state];
 
 			if(typeof(temp) != 'undefined')
 			{
 				if(data.recipient_party == "R")
 				{
 					var temp_amount = parseInt(amount_obj, 10) + parseInt(temp.repub_don, 10);
-					mDict[district].repub_don = temp_amount;
+					mDict[state].repub_don = temp_amount;
 				}
-				else if(data.recipient_part == "D")
+				else if(data.recipient_party == "D")
 				{
 					var temp_amount = parseInt(amount_obj, 10) + parseInt(temp.dem_don, 10);
-					mDict[district].dem_don = temp_amount;
+					mDict[state].dem_don = temp_amount;
 				}
 				else
 				{
 					var temp_amount = parseInt(amount_obj, 10) + parseInt(temp.other_don, 10);
-					mDict[district].other_don = temp_amount;
+					mDict[state].other_don = temp_amount;
 				}
 			}
 			else
@@ -132,31 +132,31 @@ function calcSumPerState(pJsonData)
 				if(data.recipient_party == "R")
 				{
 					var json = {};
-					json.district = district;
+					json.state = state;
 					json.repub_don = amount_obj.toString();
 					json.dem_don = 0;
 					json.other_don = 0;
 
-					mDict[district] = json;
+					mDict[state] = json;
 				}
-				else if(data.recipient_part == "D")
+				else if(data.recipient_party == "D")
 				{
 					var json = {};
-					json.district = district;
+					json.state = state;
 					json.repub_don = 0;
 					json.dem_don = amount_obj.toString();
 					json.other_don = 0;
 
-					mDict[district] = json;
+					mDict[state] = json;
 				}
 				else
 				{
 					var json = {};
-					json.district = district;
+					json.state = state;
 					json.repub_don = 0;
 					json.dem_don = 0;
 					json.other_don = amount_obj.toString();
-					mDict[district] = json;
+					mDict[state] = json;
 				}
 			}
 		}
