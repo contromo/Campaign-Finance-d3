@@ -1,0 +1,103 @@
+body {
+	margin: 0;
+    padding: 0;
+    background: #E6E6E6;
+}
+
+h1 {
+	color: black;
+	text-align: center;
+}
+
+h2 {
+    color: black;
+    text-align: center;
+}
+
+#ui-datepicker-div
+{
+    background-color: white;
+}
+
+.mapTitle {
+    height: 120px;
+}
+
+#legend_map
+{
+    z-index: 999;
+}
+
+#form_cell
+{
+    z-index: 998;
+    overflow: visible;
+}
+
+
+#wrapper 
+{
+	margin-right: auto;
+	margin-left: auto;
+	border-right: 2px solid #000000;
+	border-left: 2px solid #000000;
+	background: grey;
+    width: 1800px;
+}
+
+#banner {
+    text-align: center;
+    color: black;
+    height: 130px;
+}
+	
+table tr td{
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#fedSenate {
+    float: left;
+    width: 875px;
+    display: inline;
+    /*padding-left: 10px;*/
+    /*border-left: 1px dashed #999999;*/
+
+}
+
+#fedHouse {
+   	float: right;
+    width: 875px;
+}
+
+#state {
+   	/*display: inline;*/
+    width: 900px;
+    clear: both;
+}
+ 
+#form {
+	margin-top: 50px;
+	text-align: center;
+   	float: left;
+    width: 200px;
+    color: black;
+}
+
+table {
+	text-align: left;
+}
+
+
+#colorTest{
+    background-color: red;
+    color: white;
+    height: 50px;
+    width: 50px;
+}
+
+#details{
+    float: right;    
+    height: 100px;
+    margin-right: 100px;
+}
