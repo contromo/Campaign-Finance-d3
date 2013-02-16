@@ -4,24 +4,6 @@
 	<meta charset="utf-8" />
 	<title>Chloropleth</title>
 
-	<script type="text/javascript">
-		$(function() {
-
-    		function initializeDatePicker(identifier, date)
-    		{
-    			$(identifier).datepicker({
-    				format: 'mm/dd/yyyy',
-    				defaultDate: date
-    			});
-    			$(identifier).datepicker("setDate", date); 
-    		}
-
-    		initializeDatePicker('#startDatepicker', '01/01/2012');
-    		initializeDatePicker('#endDatepicker', '12/31/2012');
-    		$('#ui-datepicker-div').hide();
-  		});
-
-	</script>
 
 	<style type="text/css">
    		.legend rect {
@@ -2548,6 +2530,23 @@
 
 
 	<script type="text/javascript">
+			$(function() {
+
+	    		function initializeDatePicker(identifier, date)
+	    		{
+	    			$(identifier).datepicker({
+	    				format: 'mm/dd/yyyy',
+	    				defaultDate: date
+	    			});
+	    			$(identifier).datepicker("setDate", date); 
+	    		}
+
+	    		initializeDatePicker('#startDatepicker', '01/01/2012');
+	    		initializeDatePicker('#endDatepicker', '12/31/2012');
+	    		$('#ui-datepicker-div').hide();
+	  		});
+
+	
 			var sData= null;
 			var fedSenateResult=null;
 			var fedHouseResult=null;
