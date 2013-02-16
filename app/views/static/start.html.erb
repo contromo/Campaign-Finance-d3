@@ -4,21 +4,20 @@
 	<meta charset="utf-8" />
 	<title>Chloropleth</title>
 
-	<!--script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.js" type="text/javascript" charset="utf-8"></script-->
 	<script type="text/javascript">
 		$(function() {
-    		$('#startDatepicker').datepicker({
-				    format: 'mm/dd/yyyy',
-				    defaultDate: '01/01/2012'
-    		});
 
-    		$('#startDatepicker').datepicker("setDate", '01/01/2012');
+    		function initializeDatePicker(identifier, date)
+    		{
+    			$(identifier).datepicker({
+    				format: 'mm/dd/yyyy',
+    				defaultDate: date
+    			});
+    			$(identifier).datepicker("setDate", date); 
+    		}
 
-    		$('#endDatepicker').datepicker({
-				    format: 'mm/dd/yyyy',
-				    defaultDate: '12/31/2012'
-    		});
-    		$('#endDatepicker').datepicker("setDate", '12/31/2012');
+    		initializeDatePicker('#startDatepicker', '01/01/2012');
+    		initializeDatePicker('#endDatepicker', '12/31/2012');
 
   		});
 
