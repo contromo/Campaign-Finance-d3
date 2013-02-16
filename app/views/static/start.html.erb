@@ -2535,7 +2535,7 @@
 					</tr>
 					<tr>
 					<td>End Date:</td>
-					<td><input type="text" id="endDatepicker" class= "datepicker"/></td>
+					<td><input type="text" id="end2" class= "datepicker"/></td>
 					</tr>
 				</table>
 				<input type="submit" id="button" class="btn btn-large" value="Submit">
@@ -2624,16 +2624,16 @@
 				});
 
 			//attach a jQuery live event to the button
-			var output = null;	
+			// var output = null;	
 
-		    $('+#getdata-button').live('click', function(){
-		        $.getJSON('http://transparencydata.com/api/1.0/contributions.json?apikey=ac889422c02d446383ac5fffcebf5665&contributor_ft=keenan, arlene d&date=><|2012-01-01|2012-12-31&seat=federal:senate|federal:house|federal:president', function(data) {
-		            //alert(data); //uncomment this for debug
-		            //alert (data.item1+" "+data.item2+" "+data.item3); //further debug
-		            output = data.contributor_name;
+		 //    $('+#getdata-button').live('click', function(){
+		 //        $.getJSON('http://transparencydata.com/api/1.0/contributions.json?apikey=ac889422c02d446383ac5fffcebf5665&contributor_ft=keenan, arlene d&date=><|2012-01-01|2012-12-31&seat=federal:senate|federal:house|federal:president', function(data) {
+		 //            //alert(data); //uncomment this for debug
+		 //            //alert (data.item1+" "+data.item2+" "+data.item3); //further debug
+		 //            output = data.contributor_name;
 
-		        });
-		    });
+		 //        });
+		 //    });
 
 		});
 
